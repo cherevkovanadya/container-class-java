@@ -9,7 +9,7 @@ public class MyList {
         size = 0;
     }
 
-    private int size() {
+    public int size() {
         return size;
     }
 
