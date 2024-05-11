@@ -3,7 +3,7 @@ package org.example;
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
-        MyList list = new MyList();
+        MyList<Integer> list = new MyList();
         list.add(10);
         list.add(9);
         list.add(8);

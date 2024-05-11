@@ -1,7 +1,7 @@
 package org.example;
 
-public class MyList {
-    private Node head;
+public class MyList<T> {
+    private Node<T> head;
     private int size;
 
     public MyList() {
@@ -13,23 +13,23 @@ public class MyList {
         return size;
     }
 
-    public int get(int index) {
+    public T get(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index is out of bounds");
         }
-        Node current = head;
+        Node<T> current = head;
         for (int i = 0; i < index; ++i) {
             current = current.next;
         }
         return current.data;
     }
 
-    public void add(int data) {
-        Node node = new Node(data);
+    public void add(T data) {
+        Node<T> node = new Node<>(data);
         if (head == null) {
             head = node;
         } else {
-            Node current = head;
+            Node<T> current = head;
             while (current.next != null) {
                 current = current.next;
             }
@@ -38,28 +38,28 @@ public class MyList {
         ++size;
     }
 
-    public int remove(int index) {
+    public T remove(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index is out of bounds");
         }
         if (index == 0) {
-            int data = head.data;
+            T data = head.data;
             head = head.next;
             --size;
             return data;
         }
-        Node current = head;
+        Node<T> current = head;
         for (int i = 0; i < index - 1; ++i) {
             current = current.next;
         }
-        int data = current.next.data;
+        T data = current.next.data;
         current.next = current.next.next;
         --size;
         return data;
     }
 
     public void print() {
-        Node current = head;
+        Node<T> current = head;
         while (current != null) {
             System.out.print(current.data + " ");
             current = current.next;
