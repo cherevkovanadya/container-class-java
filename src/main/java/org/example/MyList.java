@@ -1,6 +1,9 @@
 package org.example;
 
-public class MyList<T> {
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
+public class MyList<T> implements Iterable<T> {
     private Node<T> head;
     private int size;
 
@@ -65,5 +68,27 @@ public class MyList<T> {
             current = current.next;
         }
         System.out.println();
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            private Node<T> current = head;
+
+            @Override
+            public boolean hasNext() {
+                return current != null;
+            }
+
+            @Override
+            public T next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                T data = current.data;
+                current = current.next;
+                return data;
+            }
+        };
     }
 }
